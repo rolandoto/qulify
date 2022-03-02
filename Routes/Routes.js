@@ -1,25 +1,20 @@
 const {Router} = require('express')
 const {check} = require('express-validator')
-const { LoginUsuario, Peticion } = require('../Controller/ControllerUser')
+const { LoginUsuario, createRegister } = require('../Controller/ControllerUser')
 const { ValidarCampos } = require('../middleweres/middleaweares')
 
 const router = Router()
 
-router.post('/login',
-
+router.get('/login',LoginUsuario)
+router.post('/register',
     [
-        check('username','el username es obligatorio').not().isEmpty(),
-        check('password','el password es obligatorio').isLength({min:6}),
+        check('email','el email  es obligatorio').isEmail(),
+        check('numbers','el numbers es obligatorio').isLength({min:9}),
+        check('passwordone','el numbers es obligatorio').isLength({min:6}),
+        check('passwordtwo','el numbers es obligatorio').isLength({min:6}),
         ValidarCampos
     ],
-    LoginUsuario
-)
-
-router.post('/Peticion',
-    [
-        check('numbers','el numbers es obligatorio').isLength({min:6}),
-    ],
-    Peticion
+    createRegister
 )
 //+19107824959
 module.exports={router}
