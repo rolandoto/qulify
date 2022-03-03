@@ -5,7 +5,16 @@ const { ValidarCampos } = require('../middleweres/middleaweares')
 
 const router = Router()
 
-router.get('/login',LoginUsuario)
+router.post('/login',
+
+    [
+        check('numbers','el numbers es obligatorio').isLength({min:9}),
+        check('passwordone','el numbers es obligatorio').isLength({min:6}),
+        ValidarCampos
+    ],
+
+LoginUsuario)
+
 router.post('/register',
     [
         check('email','el email  es obligatorio').isEmail(),
