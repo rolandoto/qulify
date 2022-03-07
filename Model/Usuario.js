@@ -1,25 +1,31 @@
 const {Schema,model} = require('mongoose')
 
-const ususuariSchema = Schema({
+const UsusuariSchema = Schema({
      email:{
         type:String,
-        required:true,
-        unique:true
+       
      },
      numbers:{
           type:String,
-          required:true
+         
          },
      passwordone:{
           type:String,
-          required:true
+       
          },
     passwordtwo:{
           type:String,
-          required:true
-         }
+          
+         },
+     imgUrl:String
 })
 
-module.exports= model('Usuario',ususuariSchema)
+UsusuariSchema.methods.setImgUrl= function setImgUrl (filename){
+     const host = process.env.HOST
+     const port = process.env.PORT
+     this.imgUrl = `${host}:${port}/public/${filename}`
+}
+
+module.exports= model('Usuario',UsusuariSchema)
 
 
