@@ -100,9 +100,10 @@ const uploadImage = async(req,res=response) =>{
 
         const product = new usuario({email})
             
-        //rolando
+         const {filename} = req.file
+           
+        product.setImgUrl(filename)
         
-        product.setImgUrl(images)
         
         const to = await  product.save()
 
