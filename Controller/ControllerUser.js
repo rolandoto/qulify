@@ -94,20 +94,15 @@ const createRegister =async(req,res=response) =>{
 
 const uploadImage = async(req,res=response) =>{
     
-    const {email} = req.body
+    const {email,images} = req.body
     
     try {
 
-        let product = new usuario({email})
-
+        const product = new usuario({email})
+            
         //rolando
-        const {filename} = req.file
-        //rolando
-            if(req.file){
-                product.setImgUrl(filename)
-            }
         
-        //usuario.setImgUrl(filename)
+        product.setImgUrl(images)
         
         const to = await  product.save()
 
