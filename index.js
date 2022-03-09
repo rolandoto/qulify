@@ -7,7 +7,7 @@ const path = require("path")
 const app =express()
 
 let port = process.env.PORT || 8080;
-app.use(express.static(path.join(__dirname,'/Storage/Imgs')));
+app.use(express.static(path.join(`${__dirname}/Storage/Imgs`)));
 app.use(express.json())
 app.use(cors())
 
