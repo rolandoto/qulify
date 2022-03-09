@@ -94,17 +94,17 @@ const createRegister =async(req,res=response) =>{
 
 const uploadImage = async(req,res=response) =>{
     
-    const {email,image} = req.body
+    const {email} = req.body
     
     try {
 
         let product = new usuario({email})
 
         //rolando
-        
-            product.setImgUrl(image)
+        const {filename} = req.file
+        console.log(filename)
+            product.setImgUrl(filename)
        
-        
         //usuario.setImgUrl(filename)
         
         const to = await  product.save()
@@ -119,8 +119,24 @@ const uploadImage = async(req,res=response) =>{
         })
     }
 
-    
+}
+
+
+const GetProduct = async(req,res=response) =>{
+
+    try {
+        const product = await usuario.find()
+
+        return res.status(201).json({
+            ok:true,
+            product
+        })
+    } catch (error) {
+        return res.status(401).json({
+            ok:false
+        })
+    }
 
 }
 
-module.exports ={LoginUsuario,createRegister,uploadImage}
+module.exports ={LoginUsuario,createRegister,uploadImage,GetProduct}

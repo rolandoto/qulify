@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const {check} = require('express-validator')
-const { LoginUsuario, createRegister, uploadImage } = require('../Controller/ControllerUser')
+const { LoginUsuario, createRegister, uploadImage, GetProduct } = require('../Controller/ControllerUser')
 const { upload } = require('../lib/Storage')
 const { ValidarCampos } = require('../middleweres/middleaweares')
 
@@ -26,8 +26,10 @@ router.post('/register',
     createRegister
 )
 
-
 router.post('/product' , upload.single('image'),uploadImage)
+
+
+router.get('/product' ,GetProduct)
 
 //+19107824959
 module.exports={router}
