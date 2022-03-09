@@ -23,7 +23,7 @@ const UsusuariSchema = Schema({
 UsusuariSchema.methods.setImgUrl= function setImgUrl (filename){
      const host = process.env.HOST
      const port = process.env.PORT
-     this.imgUrl = `${host}:${port}/public/${filename}`
+     this.imgUrl = `https://quilify.herokuapp.com/public/${filename}`
 }
 
 module.exports= model('Usuario',UsusuariSchema)
